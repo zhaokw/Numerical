@@ -1,20 +1,25 @@
-% Here we set up a simple newton method to solve a polynomial regression problem. 
-% Restricted polynomial power to 4 (cubic simulation)
-figure()
+% This script applies Newton's Method to get optimized solution for poly-regress
+
+% You can chagne "d" to test different polynomial powers (default is cubic polynomial)
+d = 4
+
+% You can chagne "Xs" and "Ys" to test different datasets
 Xs = [-3.00 -2.67 -2.33 -2.00 -1.67 -1.33 -1.00 -0.67 -0.33 0.00 0.33 0.67 1.00 1.33 1.67 2.00];
 Ys = [4.54 1.94 -0.72 -1.22 -2.47 -2.61 -2.63 -2.38 -2.39 -1.61 -1.80 -1.35 -1.17 -1.44 -1.66 -2.59];
 N = length(Xs);
+
+figure();
 hold on;
 	scatter(Xs,Ys,'filled');
 	
-	p = 1.5; d = 4;
+	p = 1.5;
 	qInitial = randn(d,1); 
 	[q,ne,fe] = findRootDEp(qInitial,Xs,Ys,p);
 	DATA_i = linspace(min(Xs),max(Xs),4*N);
 	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'b-');
 	fprintf('blue: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', p, q(end:-1:1), fe);
 
-	p = 2.00; d = 4;
+	p = 2.00;
 	qInitial = randn(d,1); 
 	[q,ne,fe] = findRootDEp(qInitial,Xs,Ys,p);
 	DATA_i = linspace(min(Xs),max(Xs),4*N);
@@ -22,7 +27,7 @@ hold on;
     fprintf(newline)
 	fprintf('green: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', p, q(end:-1:1), fe);
 
-	p = 5.0; d = 4; 
+	p = 5.0;
 	qInitial = randn(d,1); 
 	[q,ne,fe] = findRootDEp(qInitial,Xs,Ys,p);
 	DATA_i = linspace(min(Xs),max(Xs),4*N);
