@@ -14,14 +14,14 @@ hold on;
 	
 	p = 1.5;
 	qInitial = randn(d,1); 
-	[q,~,fe] = findRootDEp(qInitial,Xs,Ys,p);
+	[q,~,fe] = newton(qInitial,Xs,Ys,p);
 	DATA_i = linspace(min(Xs),max(Xs),4*N);
 	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'b-');
 	fprintf('blue: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', p, q(end:-1:1), fe);
 
 	p = 2.00;
 	qInitial = randn(d,1); 
-	[q,~,fe] = findRootDEp(qInitial,Xs,Ys,p);
+	[q,~,fe] = newton(qInitial,Xs,Ys,p);
 	DATA_i = linspace(min(Xs),max(Xs),4*N);
 	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'g-');
     fprintf(newline)
@@ -29,7 +29,7 @@ hold on;
 
 	p = 5.0;
 	qInitial = randn(d,1); 
-	[q,~,fe] = findRootDEp(qInitial,Xs,Ys,p);
+	[q,~,fe] = newton(qInitial,Xs,Ys,p);
 	DATA_i = linspace(min(Xs),max(Xs),4*N);
 	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'r-');
     fprintf(newline)
@@ -64,14 +64,14 @@ function result = ddEp(q,x,y,p)
 end
 
 % Gets optimal polynomial minimizing Ep
-function [qroot,newtonerror,finalerror] = findRootDEp(qInitial,x,y,p)
+function [root,newtonErr,err] = newton(qInitial,x,y,p)
     maxItr = 15; itr = 0; q = qInitial;
     while (itr < maxItr)
         dq = ddEp(q,x,y,p)\dEp(q,x,y,p);
         q = q - dq;
         itr = itr+1;
     end
-    qroot = q; newtonerror = norm(dEp(qroot,x,y,p)); finalerror = Ep(qroot,x,y,p);
+    root = q; newtonErr = norm(dEp(root,x,y,p)); err = Ep(root,x,y,p);
 end
 
 
