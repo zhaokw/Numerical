@@ -23,7 +23,6 @@ function visualize(Iins)
         hold off;
         xlim(y1Lim); xlabel('x variable');
         ylim(y2Lim); ylabel('y variable');
-        cbar = colorbar; ylabel(cbar,'velocity');
         
         % Then, plots the x- and y-value as two functions of t
         axis square;
