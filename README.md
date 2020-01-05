@@ -1,4 +1,4 @@
-# Repository: the Numerical Library
+# Repository: The Numerical Library
 --My Numerical Library in MATLAB
 
 # Contents:
