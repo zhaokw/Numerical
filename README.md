@@ -8,5 +8,5 @@
 <br/><br/>
 
 2, <b>FitzhughNagumo.m</b> Visualize the trajectory of some initial values of the FitzHugh-Nagamo Model
-<br/><i>In the sample imput, we have 3 sinks and 2 stable orbits</i>
+<br/><i>In the sample input, we have 3 sinks and 2 stable orbits</i>
 ![Fitz](Photos/FitzhughNagumo.PNG)
