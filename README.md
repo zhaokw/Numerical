@@ -1,5 +1,6 @@
 # Repository: The Numerical Library
---My Numerical Library in MATLAB
+<p><i>By Kevin Zhao</i></p>
+My Numerical Library in MATLAB
 
 # Contents:
 1, <b>PolyRegression.m</b> Application of Newton's Method to find the best-fit polynomial equation, with error functions as the mean difference measured in 1.5-norm, 2-norm (Euclidean Distance) and 5-norm. <br/>
