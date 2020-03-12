@@ -17,7 +17,7 @@ hold on;
 		[q,~,fe] = newton(qInitial,Xs,Ys,ps(i));
 		DATA_i = linspace(min(Xs),max(Xs),4*N);
 		plot(DATA_i,polyval(q(end:-1:1),DATA_i), colors(i));
-		fprintf('blue: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', ps(i), q(end:-1:1), fe);
+		fprintf(colors(i)+' p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', ps(i), q(end:-1:1), fe);
     	end
 hold off;
 
