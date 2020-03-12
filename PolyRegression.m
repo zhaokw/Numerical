@@ -1,7 +1,7 @@
 % This script applies Newton's Method to get optimized solution for poly-regress
 
 % You can chagne "d" to test different polynomial powers (default is cubic polynomial)
-d = 4
+d = 4;
 
 % You can chagne "Xs" and "Ys" to test different datasets
 Xs = [-3.00 -2.67 -2.33 -2.00 -1.67 -1.33 -1.00 -0.67 -0.33 0.00 0.33 0.67 1.00 1.33 1.67 2.00];
@@ -11,31 +11,14 @@ N = length(Xs);
 figure();
 hold on;
 	scatter(Xs,Ys,'filled');
-	
-	p = 1.5;
-	qInitial = randn(d,1); 
-	[q,~,fe] = newton(qInitial,Xs,Ys,p);
-	DATA_i = linspace(min(Xs),max(Xs),4*N);
-	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'b-');
-	fprintf('blue: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', p, q(end:-1:1), fe);
-
-	p = 2.00;
-	qInitial = randn(d,1); 
-	[q,~,fe] = newton(qInitial,Xs,Ys,p);
-	DATA_i = linspace(min(Xs),max(Xs),4*N);
-	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'g-');
-    fprintf(newline)
-	fprintf('green: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', p, q(end:-1:1), fe);
-
-	p = 5.0;
-	qInitial = randn(d,1); 
-	[q,~,fe] = newton(qInitial,Xs,Ys,p);
-	DATA_i = linspace(min(Xs),max(Xs),4*N);
-	plot(DATA_i,polyval(q(end:-1:1),DATA_i),'r-');
-    fprintf(newline)
-	fprintf('red: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', p, q(end:-1:1), fe);
-
-    fprintf(newline)
+    ps = [1.5,2.0,5.0]; colors = ['b-','g-','r-'];
+    for i = 1 : 3
+        qInitial = randn(d,1); 
+        [q,~,fe] = newton(qInitial,Xs,Ys,ps(i));
+        DATA_i = linspace(min(Xs),max(Xs),4*N);
+        plot(DATA_i,polyval(q(end:-1:1),DATA_i), colors(i));
+        fprintf('blue: p=%0.2f, y=%0.2fx^3+(%0.2f)x^2+(%0.2f)x+(%0.2f), err=%0.2f', ps(i), q(end:-1:1), fe);
+    end
 hold off;
 
 % Gets the p-error of the simulating polynomial
@@ -73,5 +56,3 @@ function [root,newtonErr,err] = newton(qInitial,x,y,p)
     end
     root = q; newtonErr = norm(dEp(root,x,y,p)); err = Ep(root,x,y,p);
 end
-
-
